@@ -3,7 +3,13 @@ version: '3'
 services:
   web:
     build: .
-    command: bash -c "cd exchange_rate && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: >
+        bash -c "cd exchange_rate 
+        && python manage.py makemigrations
+        && python manage.py migrate 
+        && python manage.py crontab add
+        && service cron start
+        && python manage.py runserver 0.0.0.0:8000"
     container_name: exchange_rate
     ports:
       - "8000:8000"
