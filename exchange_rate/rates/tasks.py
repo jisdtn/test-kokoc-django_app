@@ -1,10 +1,12 @@
 import logging
 
-from django.utils import timezone
 import requests
+from django.utils import timezone
+
 from .models import Currency
 
 logger = logging.getLogger(__name__)
+
 
 def get_rates_cron_job():
     """Gets the currency rate data and save it to DB"""

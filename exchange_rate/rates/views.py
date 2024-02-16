@@ -1,5 +1,7 @@
 from django.http import JsonResponse
+
 from .models import Currency
+
 
 def get_rate(request):
     """Display the json response for rate parameters"""
