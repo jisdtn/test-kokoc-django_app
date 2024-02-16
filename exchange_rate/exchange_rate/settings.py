@@ -14,7 +14,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CRONJOBS = [
-    ('* * * * *', '../rates.tasks.get_rates_cron_job'),
+    ('0 7 * * *', 'rates.tasks.get_rates_cron_job'),
 ]
 
 # Application definition
@@ -39,6 +39,29 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'django.log'),
+        },
+    },
+    "root": {
+        "handlers": ["file"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+    },
+}
 
 ROOT_URLCONF = 'exchange_rate.urls'
 
