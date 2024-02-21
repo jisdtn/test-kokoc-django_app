@@ -18,6 +18,7 @@
 - Django 3.2.24
 - django-crontab
 - SQLite3
+- Docker
 
 ## Развернуть проект 
 Клонировать репозиторий:
